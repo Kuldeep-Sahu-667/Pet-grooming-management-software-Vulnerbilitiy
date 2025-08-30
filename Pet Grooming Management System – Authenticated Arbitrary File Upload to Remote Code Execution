@@ -1,0 +1,35 @@
+**Title: [Authenticated File Upload → Remote Code Execution] in [Pet-Grooming-Management-System] <= [v1.0]**
+**BUG Author: Kuldeep Sahu**
+
+**Product Information**
+
+Vendor Homepage: https://www.sourcecodester.com/
+Software Link: [https://www.sourcecodester.com/php/xxxx/pet-grooming-management-system.html]
+Affected Version: <= v1.0
+
+**Vulnerability Details**
+
+Type: Authenticated File Upload → Remote Code Execution (RCE)
+Affected URL: http://localhost/petgrooming_erp/pet_grooming/admin/profile.php
+Vulnerable Parameter: File Upload Field (Profile Image)
+Vulnerable Files:[admin/profile.php]
+Web accessible upload directory http://localhost/petgrooming_erp/pet_grooming/assets/uploadImage/Profile/
+Vulnerability Type: CWE-434 (Unrestricted Upload of File with Dangerous Type)
+Severity Level: CRITICAL (CVSS: 9.8)
+
+**Root Cause**
+
+The application fails to validate or sanitize uploaded files. Attackers can upload PHP webshells (e.g., shell.php), which are stored in a publicly accessible folder. Direct access to the file allows remote code execution.
+
+**Impact**
+
+Remote Code Execution on server
+Full compromise of web application
+Possible privilege escalation and lateral movement
+Database dump and credential theft
+Server takeover
+
+**Proof of Concept (PoC)**
+Step1:- Login with valid user credentials.
+Step2:- Navigate to Profile Page section → Upload Image
+Step3:- Upload a PHP file
